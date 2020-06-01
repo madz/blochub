@@ -41,5 +41,44 @@
     </array>
     <key>UIViewControllerBasedStatusBarAppearance</key>
     <false/>
+    <!-- FACEBOOK/GOOGLE LOGIN CONFIGURATION START-->
+    <key>CFBundleURLTypes</key>
+    <array>
+        <!--
+        <dict>
+        ... Some other CFBundleURLTypes definition.
+        </dict>
+        -->
+        <dict>
+            <key>CFBundleURLSchemes</key>
+            <array>
+                <!--
+                  Replace "000000000000" with your Facebook App ID here.
+                  **NOTE**: The scheme needs to start with `fb` and then your ID.
+                -->
+                <string>fb$(FACEBOOK_ID)</string>
+                <!-- Copied from GoogleService-Info.plist key REVERSED_CLIENT_ID -->
+			          <string>$(GOOGLE_FIREBASE_REVERSE_ID)</string>
+            </array>
+        </dict>
+    </array>
+
+    <key>FacebookAppID</key>
+
+    <!-- Replace "000000000000" with your Facebook App ID here. -->
+    <string>(FACEBOOK_ID)</string>
+    <key>FacebookDisplayName</key>
+
+    <!-- Replace "YOUR_APP_NAME" with your Facebook App name. -->
+    <string>$(BUNDLE_NAME)</string>
+
+    <key>LSApplicationQueriesSchemes</key>
+    <array>
+        <string>fbapi</string>
+        <string>fb-messenger-share-api</string>
+        <string>fbauth2</string>
+        <string>fbshareextension</string>
+    </array>
+     <!-- FACEBOOK/GOOGLE LOGIN CONFIGURATION END-->
   </dict>
 </plist>
