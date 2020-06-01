@@ -52,3 +52,4 @@ android/app/src/qa/qa_blochub_key.properties
 ios/Runner/Firebase/dev/GoogleService-Info.plist
 ios/Runner/Firebase/prod/GoogleService-Info.plist
 ios/Runner/Firebase/qa/GoogleService-Info.plist
+ios/Runner/GoogleService-Info.plist
