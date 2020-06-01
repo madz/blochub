@@ -60,22 +60,22 @@ android {
             dimension "flavor-type"
             applicationId "com.madz.blochub.dev"
             resValue "string", "app_name", "BlocHub Dev"
-            // resValue "string", "facebook_app_id", devKeyProperties.getProperty('fbAppId')
-            // resValue "string", "fb_login_protocol_scheme", devKeyProperties.getProperty('fbAppIdProtocolScheme')
+            resValue "string", "facebook_app_id", devKeyProperties.getProperty('fbAppId')
+            resValue "string", "fb_login_protocol_scheme", devKeyProperties.getProperty('fbAppIdProtocolScheme')
         }
         qa {
             dimension "flavor-type"
             applicationId "com.madz.blochub.qa"
             resValue "string", "app_name", "BlocHub QA"
-            // resValue "string", "facebook_app_id", qaKeyProperties.getProperty('fbAppId')
-            // resValue "string", "fb_login_protocol_scheme", qaKeyProperties.getProperty('fbAppIdProtocolScheme')
+            resValue "string", "facebook_app_id", qaKeyProperties.getProperty('fbAppId')
+            resValue "string", "fb_login_protocol_scheme", qaKeyProperties.getProperty('fbAppIdProtocolScheme')
         }
         prod {
             dimension "flavor-type"
             applicationId "com.madz.blochub.prod"
             resValue "string", "app_name", "BlocHub"
-            // resValue "string", "facebook_app_id", prodKeyProperties.getProperty('fbAppId')
-            // resValue "string", "fb_login_protocol_scheme", prodKeyProperties.getProperty('fbAppIdProtocolScheme')
+            resValue "string", "facebook_app_id", prodKeyProperties.getProperty('fbAppId')
+            resValue "string", "fb_login_protocol_scheme", prodKeyProperties.getProperty('fbAppIdProtocolScheme')
         }
     }
 
