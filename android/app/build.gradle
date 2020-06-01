@@ -1,0 +1,148 @@
+def localProperties = new Properties()
+def localPropertiesFile = rootProject.file('local.properties')
+if (localPropertiesFile.exists()) {
+    localPropertiesFile.withReader('UTF-8') { reader ->
+        localProperties.load(reader)
+    }
+}
+
+def flutterRoot = localProperties.getProperty('flutter.sdk')
+if (flutterRoot == null) {
+    throw new GradleException("Flutter SDK not found. Define location with flutter.sdk in the local.properties file.")
+}
+
+def flutterVersionCode = localProperties.getProperty('flutter.versionCode')
+if (flutterVersionCode == null) {
+    flutterVersionCode = '1'
+}
+
+def flutterVersionName = localProperties.getProperty('flutter.versionName')
+if (flutterVersionName == null) {
+    flutterVersionName = '1.0'
+}
+
+def devKeyProperties = new Properties()
+def devKeyPropertiesFile = rootProject.file('app/src/dev/dev_blochub_key.properties')
+if (devKeyPropertiesFile.exists()) {
+    devKeyPropertiesFile.withReader('UTF-8') { reader ->
+        devKeyProperties.load(reader)
+    }
+}
+
+def qaKeyProperties = new Properties()
+def qaKeyPropertiesFile = rootProject.file('app/src/qa/qa_blochub_key.properties')
+if (qaKeyPropertiesFile.exists()) {
+    qaKeyPropertiesFile.withReader('UTF-8') { reader ->
+        qaKeyProperties.load(reader)
+    }
+}
+
+def prodKeyProperties = new Properties()
+def prodKeyPropertiesFile = rootProject.file('app/src/prod/prod_blochub_key.properties')
+if (prodKeyPropertiesFile.exists()) {
+    prodKeyPropertiesFile.withReader('UTF-8') { reader ->
+        prodKeyProperties.load(reader)
+    }
+}
+
+
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
+apply plugin: 'com.google.gms.google-services'
+
+android {
+
+    flavorDimensions "flavor-type"
+
+    productFlavors {
+        dev {
+            dimension "flavor-type"
+            applicationId "com.madz.blochub.dev"
+            resValue "string", "app_name", "BlocHub Dev"
+            // resValue "string", "facebook_app_id", devKeyProperties.getProperty('fbAppId')
+            // resValue "string", "fb_login_protocol_scheme", devKeyProperties.getProperty('fbAppIdProtocolScheme')
+        }
+        qa {
+            dimension "flavor-type"
+            applicationId "com.madz.blochub.qa"
+            resValue "string", "app_name", "BlocHub QA"
+            // resValue "string", "facebook_app_id", qaKeyProperties.getProperty('fbAppId')
+            // resValue "string", "fb_login_protocol_scheme", qaKeyProperties.getProperty('fbAppIdProtocolScheme')
+        }
+        prod {
+            dimension "flavor-type"
+            applicationId "com.madz.blochub.prod"
+            resValue "string", "app_name", "BlocHub"
+            // resValue "string", "facebook_app_id", prodKeyProperties.getProperty('fbAppId')
+            // resValue "string", "fb_login_protocol_scheme", prodKeyProperties.getProperty('fbAppIdProtocolScheme')
+        }
+    }
+
+    compileSdkVersion 28
+
+    sourceSets {
+        main.java.srcDirs += 'src/main/kotlin'
+    }
+
+    lintOptions {
+        disable 'InvalidPackage'
+    }
+
+    defaultConfig {
+        applicationId "com.madz.blochub"
+        minSdkVersion 16
+        targetSdkVersion 28
+        versionCode flutterVersionCode.toInteger()
+        versionName flutterVersionName
+        multiDexEnabled true
+    }
+
+    signingConfigs {
+        dev {
+            keyAlias devKeyProperties.getProperty('keyAlias')
+            keyPassword devKeyProperties.getProperty('keyPassword')
+            storeFile rootProject.file("app/src/dev/dev_blochub_key.jks")
+            storePassword devKeyProperties.getProperty('storePassword')
+        }
+        qa {
+            keyAlias qaKeyProperties.getProperty('keyAlias')
+            keyPassword qaKeyProperties.getProperty('keyPassword')
+            storeFile rootProject.file("app/src/qa/qa_blochub_key.jks")
+            storePassword qaKeyProperties.getProperty('storePassword')
+        }
+        prod {
+            keyAlias prodKeyProperties.getProperty('keyAlias')
+            keyPassword prodKeyProperties.getProperty('keyPassword')
+            storeFile rootProject.file("app/src/prod/prod_blochub_key.jks")
+            storePassword prodKeyProperties.getProperty('storePassword')
+        }
+    }
+
+    buildTypes {
+        release {
+            signingConfig signingConfigs.prod
+
+            minifyEnabled true
+            useProguard true
+
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+
+        }
+        debug {
+            //change to signingConfig signingConfigs.prod if want to debug production
+            signingConfig signingConfigs.dev
+        }
+    }
+}
+
+flutter {
+    source '../..'
+}
+
+dependencies {
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    // Add the Firebase SDK for Google Analytics
+    implementation 'com.google.firebase:firebase-analytics:17.4.2'
+}
+
