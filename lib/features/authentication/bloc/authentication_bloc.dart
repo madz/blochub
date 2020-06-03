@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:blochub/core/usecases/auth/firebase_get_user_usecase.dart';
 import 'package:blochub/core/usecases/auth/firebase_is_signedin_usecase.dart';
 import 'package:blochub/core/usecases/auth/firebase_signout_use_case.dart';
-import 'package:blochub/core/usecases/usecase.dart';
+import 'package:blochub/core/usecases/user/usecase.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
@@ -14,7 +14,7 @@ part 'authentication_event.dart';
 part 'authentication_state.dart';
 
 /// bloc for Authentication
-@lazySingleton
+@injectable
 class AuthenticationBloc
     extends Bloc<AuthenticationEvent, AuthenticationState> {
   final FirebaseIsSignedInUserUseCase firebaseIsSignedInUserUseCase;

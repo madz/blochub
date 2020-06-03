@@ -4,7 +4,7 @@ import 'package:blochub/core/usecases/auth/firebase_get_user_usecase.dart';
 import 'package:blochub/core/usecases/auth/firebase_link_credential_with_facebook.dart';
 import 'package:blochub/core/usecases/auth/firebase_link_credential_with_google.dart';
 import 'package:blochub/core/usecases/auth/firebase_unlink_provider.dart';
-import 'package:blochub/core/usecases/usecase.dart';
+import 'package:blochub/core/usecases/user/usecase.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';

@@ -3,10 +3,9 @@ import 'package:blochub/core/usecases/auth/auth_user_param.dart';
 import 'package:blochub/core/usecases/auth/firebase_get_user_usecase.dart';
 import 'package:blochub/core/usecases/auth/firebase_signin_with_credentials_usecase.dart';
 import 'package:blochub/core/usecases/auth/firebase_signup_usecase.dart';
-import 'package:blochub/core/usecases/usecase.dart';
+import 'package:blochub/core/usecases/use_case_param/use_case_user_param_user_model.dart';
 import 'package:blochub/core/usecases/user/firestore_create_user_usecase.dart';
-import 'package:blochub/core/usecases/user/firestore_get_user_usecase.dart';
-import 'package:blochub/core/usecases/user/user_usecase_param.dart';
+import 'package:blochub/core/usecases/user/usecase.dart';
 import 'package:blochub/shared/util/validators.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -25,7 +24,6 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
       firebaseSignedInWithCredentialsUserUseCase;
   final FirebaseGetUserUseCase firebaseGetUserUseCase;
   final FirestoreCreateUserUseCase firestoreCreateUserUseCase;
-  final FirestoreGetUserUseCase firestoreGetUserUseCase;
 
   final Validators validators;
 
@@ -34,7 +32,6 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
     @required this.firebaseSignedInWithCredentialsUserUseCase,
     @required this.firebaseGetUserUseCase,
     @required this.firestoreCreateUserUseCase,
-    @required this.firestoreGetUserUseCase,
     @required this.validators,
   });
 
@@ -87,6 +84,9 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
       submitted: (e) async* {
         yield RegisterState.loading();
         try {
+          /// try to sign up using email and password,
+          /// if there is already the same email will return error.
+          /// else continue in creating user.
           await firebaseSignUpUseCase.call(
             ParamEmailPassword(email: e.email, password: e.password),
           );
@@ -101,26 +101,15 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
             phoneNumber: e.phoneNo ?? user.phoneNumber,
           );
           await firestoreCreateUserUseCase
-              .call(ParamUserModel(userModel: userModel));
+              .call(UseCaseUserParamModel.init(userModel));
 
-          yield RegisterState.success(info: 'Successfulyy registered');
+          yield RegisterState.success(info: 'Successfully registered');
         } on PlatformException catch (platformException) {
           yield RegisterState.failure(info: platformException.message);
         }
       },
     );
   }
-
-//  @override
-//  Stream<S> transform(StreamTransformer<T, S> streamTransformer) {
-//
-//  }
-
-  //  @override
-//  Stream<Transition<Event, State>> transformTransitions(
-//      Stream<Transition<Event, State>> transitions) {
-//
-//  }
 
   @override
   Stream<Transition<RegisterEvent, RegisterState>> transformTransitions(

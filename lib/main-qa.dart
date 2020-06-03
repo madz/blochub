@@ -12,7 +12,8 @@ void main() async {
   // Always call this if the main method is asynchronous
   WidgetsFlutterBinding.ensureInitialized();
   // Register all the models and services before the app starts
-  configureInjection(env);
+  /// Important!!!! use await keyword for configureDependencies();
+  await configureDependencies();
 
   BlocSupervisor.delegate = SimpleBlocDelegate();
 

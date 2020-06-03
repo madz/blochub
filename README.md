@@ -57,8 +57,8 @@ flutter build ios --target lib/main-prod.dart --flavor prod
 
 # Build using Android for Production
 
-flutter build appbundle --release --target lib\main_prod.dart --flavor prod
-flutter build apk --release --target lib\main_prod.dart --flavor prod --split-per-abi --no-shrink
+flutter build appbundle --release --target lib\main-prod.dart --flavor prod
+flutter build apk --release --target lib\main-prod.dart --flavor prod
 
 # Build using Web for Production
 

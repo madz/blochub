@@ -5,10 +5,11 @@ import 'package:blochub/core/usecases/auth/firebase_get_user_usecase.dart';
 import 'package:blochub/core/usecases/auth/firebase_signin_with_credentials_usecase.dart';
 import 'package:blochub/core/usecases/auth/firebase_signin_with_facebook_usecase.dart';
 import 'package:blochub/core/usecases/auth/firebase_signin_with_google_usecase.dart';
-import 'package:blochub/core/usecases/usecase.dart';
+import 'package:blochub/core/usecases/use_case_param/use_case_user_param_uid.dart';
+import 'package:blochub/core/usecases/use_case_param/use_case_user_param_user_model.dart';
 import 'package:blochub/core/usecases/user/firestore_create_user_usecase.dart';
 import 'package:blochub/core/usecases/user/firestore_get_user_usecase.dart';
-import 'package:blochub/core/usecases/user/user_usecase_param.dart';
+import 'package:blochub/core/usecases/user/usecase.dart';
 import 'package:blochub/shared/util/validators.dart';
 import 'package:flutter/services.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -122,8 +123,8 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
 
   void _createNewUser() async {
     final firebaseUser = await firebaseGetUserUseCase.call(NoParams());
-    final userStore =
-        await firestoreGetUserUseCase.call(ParamUid(uid: firebaseUser.uid));
+    final userStore = await firestoreGetUserUseCase
+        .call(UseCaseUserParamUid.init(firebaseUser.uid));
 
     if (userStore == null) {
       // if user is not existed in User Firestore create a User
@@ -135,7 +136,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
         lastName: firebaseUser.displayName,
       );
       await firestoreCreateUserUseCase
-          .call(ParamUserModel(userModel: userModel));
+          .call(UseCaseUserParamModel.init(userModel));
     }
   }
 }

@@ -4,6 +4,7 @@
 // InjectableConfigGenerator
 // **************************************************************************
 
+import 'package:blochub/features/explore/bloc/explore_bloc.dart';
 import 'package:blochub/core/di/module_injector.dart';
 import 'package:flutter_facebook_login/flutter_facebook_login.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -45,6 +46,7 @@ import 'package:get_it/get_it.dart';
 
 Future<void> $initGetIt(GetIt g, {String environment}) async {
   final injectableModule = _$InjectableModule();
+  g.registerLazySingleton<ExploreBloc>(() => ExploreBloc());
   g.registerLazySingleton<FacebookLogin>(() => injectableModule.facebookLogin);
   g.registerLazySingleton<FirebaseAuth>(() => injectableModule.firebaseAuth);
   g.registerLazySingleton<FirebaseStorage>(
@@ -144,7 +146,6 @@ Future<void> $initGetIt(GetIt g, {String environment}) async {
             g<FirebaseSignedInWithCredentialsUserUseCase>(),
         firebaseGetUserUseCase: g<FirebaseGetUserUseCase>(),
         firestoreCreateUserUseCase: g<FirestoreCreateUserUseCase>(),
-        firestoreGetUserUseCase: g<FirestoreGetUserUseCase>(),
         validators: g<Validators>(),
       ));
   g.registerLazySingleton<AuthenticationBloc>(() => AuthenticationBloc(

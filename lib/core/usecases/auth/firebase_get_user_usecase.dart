@@ -3,7 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:injectable/injectable.dart';
 import 'package:meta/meta.dart';
 
-import '../usecase.dart';
+import '../user/usecase.dart';
 
 @lazySingleton
 class FirebaseGetUserUseCase

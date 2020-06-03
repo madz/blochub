@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:injectable/injectable.dart';
 
 import 'core/di/injector.dart';
 import 'features/authentication/bloc/authentication_bloc.dart';
@@ -24,7 +23,8 @@ class App extends StatelessWidget {
       providers: [
         /// Authentication Bloc
         BlocProvider<AuthenticationBloc>(
-            create: (BuildContext context) => getIt<AuthenticationBloc>()),
+          create: (BuildContext context) => getIt<AuthenticationBloc>(),
+        ),
 
         /// Navigation Bloc
         BlocProvider<NavigationBloc>(
@@ -57,7 +57,6 @@ class App extends StatelessWidget {
         ),
       ],
       child: MaterialApp(
-        debugShowCheckedModeBanner: env == Environment.dev ? true : false,
         theme: ThemeData(
           textTheme: GoogleFonts.openSansTextTheme(
             Theme.of(context).textTheme,

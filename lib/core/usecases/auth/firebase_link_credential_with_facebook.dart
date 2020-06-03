@@ -2,7 +2,7 @@ import 'package:blochub/core/repositories/auth/firebase_auth_user_repository.dar
 import 'package:injectable/injectable.dart';
 import 'package:meta/meta.dart';
 
-import '../usecase.dart';
+import '../user/usecase.dart';
 
 @lazySingleton
 class FirebaseLinkCredentialWithFacebook
