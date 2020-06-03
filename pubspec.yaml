@@ -10,25 +10,41 @@ dependencies:
   flutter:
     sdk: flutter
 
+  #font libs
+  google_fonts: ^1.1.0
+
   #dependency injection
   get_it: ^4.0.2
   injectable: ^0.4.0
 
-  #UI enhancement libs
+  #UI libs
   font_awesome_flutter: ^8.8.1
+
+  #bloc related libs
+  flutter_bloc: ^4.0.0
+  rxdart: ^0.24.0
+  equatable: ^1.2.0
 
   #firebase related libs
   firebase_core: 0.4.5
   cloud_firestore: ^0.13.6
+  firebase_auth: ^0.16.1
+  firebase_storage: ^3.1.6
   firebase_analytics: ^5.0.14
 
   #auth related libs
   google_sign_in: ^4.4.4
   flutter_facebook_login: ^3.0.0
 
-  #utilities related libsc
+  #utilities related libs
+  image_picker: ^0.6.7
   shared_preferences: ^0.5.7+1
   http: ^0.12.1
+
+  #google maps related libs
+  google_maps_flutter: ^0.5.27+1
+  geolocator: ^5.3.1
+  location_permissions: ^2.0.5
 
   #code generator related libs
   json_annotation: ^3.0.1
@@ -44,9 +60,6 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-
-  #font libs
-  google_fonts: ^1.1.0
 
   #generate random uuid
   uuid: ^2.0.4

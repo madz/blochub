@@ -62,6 +62,7 @@ android {
             resValue "string", "app_name", "BlocHub Dev"
             resValue "string", "facebook_app_id", devKeyProperties.getProperty('fbAppId')
             resValue "string", "fb_login_protocol_scheme", devKeyProperties.getProperty('fbAppIdProtocolScheme')
+            resValue "string", "google_map_key", devKeyProperties.getProperty('googleMapKey')
         }
         qa {
             dimension "flavor-type"
@@ -69,6 +70,7 @@ android {
             resValue "string", "app_name", "BlocHub QA"
             resValue "string", "facebook_app_id", qaKeyProperties.getProperty('fbAppId')
             resValue "string", "fb_login_protocol_scheme", qaKeyProperties.getProperty('fbAppIdProtocolScheme')
+            resValue "string", "google_map_key", qaKeyProperties.getProperty('googleMapKey')
         }
         prod {
             dimension "flavor-type"
@@ -76,6 +78,7 @@ android {
             resValue "string", "app_name", "BlocHub"
             resValue "string", "facebook_app_id", prodKeyProperties.getProperty('fbAppId')
             resValue "string", "fb_login_protocol_scheme", prodKeyProperties.getProperty('fbAppIdProtocolScheme')
+            resValue "string", "google_map_key", prodKeyProperties.getProperty('googleMapKey')
         }
     }
 
@@ -92,7 +95,7 @@ android {
     defaultConfig {
         applicationId "com.madz.blochub"
         minSdkVersion 16
-        targetSdkVersion 28
+        targetSdkVersion 29
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
         multiDexEnabled true
