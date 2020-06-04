@@ -41,10 +41,6 @@
     </array>
     <key>UIViewControllerBasedStatusBarAppearance</key>
     <false/>
-     <!--GOOGLE MAPS START-->
-    <key>io.flutter.embedded_views_preview</key>
-	  <true/>
-     <!--GOOGLE MAPS END-->
     <!--IMAGE PICKER START-->
     <key>NSCameraUsageDescription</key>
     <string>Used to demonstrate image picker plugin</string>
@@ -52,7 +48,23 @@
     <string>Used to capture audio for image picker plugin</string>
     <key>NSPhotoLibraryUsageDescription</key>
     <string>Used to demonstrate image picker plugin</string>
-     <!--IMAGE PICKER END-->
+    <!--IMAGE PICKER END-->
+    <!--GOOLGE MAPS CONFIG START-->
+    <key>GOOGLE_MAP_API_KEY</key>
+    <string>$(GOOGLE_MAP_API_KEY)</string>
+
+    <key>NSLocationWhenInUseUsageDescription</key>
+    <string>This application requires location services to work</string>
+
+    <key>NSLocationAlwaysUsageDescription</key>
+    <string>This application requires location services to work</string>
+
+    <key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+    <string>This application requires location when open in the background</string>
+
+    <key>io.flutter.embedded_views_preview</key>
+	  <true/>
+    <!--GOOLGE MAPS CONFIG END-->
     <!-- FACEBOOK/GOOGLE LOGIN CONFIGURATION START-->
     <key>CFBundleURLTypes</key>
     <array>

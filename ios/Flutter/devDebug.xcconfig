@@ -1,8 +1,0 @@
-#include "Generated.xcconfig"
-
-FLUTTER_TARGET=lib/main-dev.dart
-
-ASSET_PREFIX=dev
-BUNDLE_NAME=BlocHub Dev
-FACEBOOK_ID=1088971841484090
-GOOGLE_FIREBASE_REVERSE_ID=com.googleusercontent.apps.399393051954-eidibs2r8vbob515s2cbf04q2i9ahu3i

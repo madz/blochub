@@ -53,3 +53,9 @@ ios/Runner/Firebase/dev/GoogleService-Info.plist
 ios/Runner/Firebase/prod/GoogleService-Info.plist
 ios/Runner/Firebase/qa/GoogleService-Info.plist
 ios/Runner/GoogleService-Info.plist
+ios/Flutter/qaRelease.xcconfig
+ios/Flutter/qaDebug.xcconfig
+ios/Flutter/prodRelease.xcconfig
+ios/Flutter/prodDebug.xcconfig
+ios/Flutter/devDebug.xcconfig
+ios/Flutter/devRelease.xcconfig
