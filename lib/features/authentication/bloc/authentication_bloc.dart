@@ -14,7 +14,7 @@ part 'authentication_event.dart';
 part 'authentication_state.dart';
 
 /// bloc for Authentication
-@injectable
+@lazySingleton
 class AuthenticationBloc
     extends Bloc<AuthenticationEvent, AuthenticationState> {
   final FirebaseIsSignedInUserUseCase firebaseIsSignedInUserUseCase;

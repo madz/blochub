@@ -1,3 +1,5 @@
+import 'package:blochub/common_main.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -10,22 +12,6 @@ import 'simple_bloc_delegate.dart';
 
 void main() async {
   String env = Environment.dev;
-  // Always call this if the main method is asynchronous
-  WidgetsFlutterBinding.ensureInitialized();
-  // Register all the models and services before the app starts
-  /// Important!!!! use await keyword for configureDependencies();
-  await configureDependencies();
 
-  BlocSupervisor.delegate = SimpleBlocDelegate();
-
-  print('Environment =  $env');
-
-  LicenseRegistry.addLicense(() async* {
-    final license = await rootBundle.loadString('google_fonts/OFL.txt');
-    yield LicenseEntryWithLineBreaks(['google_fonts'], license);
-  });
-
-  runApp(App(
-    env: env,
-  ));
+  commonMain(env);
 }
