@@ -9,12 +9,10 @@ part 'explore_state.dart';
 @lazySingleton
 class ExploreBloc extends Bloc<ExploreEvent, ExploreState> {
   @override
-  // TODO: implement initialState
   ExploreState get initialState => ExploreState.initial();
 
   @override
   Stream<ExploreState> mapEventToState(ExploreEvent event) {
-    // TODO: implement mapEventToState
     throw UnimplementedError();
   }
 }
