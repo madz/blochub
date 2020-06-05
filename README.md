@@ -53,7 +53,6 @@ flutter run --target lib/main-prod.dart -d chrome --flavor prod
 # Build App for iOS for Production
 
 flutter build ios --target lib/main-prod.dart --flavor prod
-\*Important!!! change GoogleService-Info.plist for dev/prod.
 
 # Build using Android for Production
 
